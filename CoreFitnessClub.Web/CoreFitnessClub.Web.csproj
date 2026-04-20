@@ -21,8 +21,4 @@
     <ProjectReference Include="..\CoreFitnessClub.Infrastructure\CoreFitnessClub.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Viewmodels\" />
-  </ItemGroup>
-
 </Project>
