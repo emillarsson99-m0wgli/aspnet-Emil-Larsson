@@ -1,0 +1,22 @@
+﻿<header class="site-header">
+    <div class="header-container">
+        <div class="header-logo">
+            <a asp-controller="Home" asp-action="Index">
+                <img src="~/images/CoreFitnessLogo.svg" alt="Core Fitness Logo" />
+            </a>
+        </div>
+
+        <nav class="header-nav">
+            <a asp-controller="Home" asp-action="FitnessCenters">Fitness Centers</a>
+            <a asp-controller="Home" asp-action="Memberships">Memberships</a>
+            <a asp-controller="Home" asp-action="Training">Training</a>
+            <a asp-controller="Home" asp-action="CustomerService">Customer Service</a>
+            <a asp-controller="Home" asp-action="Store">Store</a>
+        </nav>
+
+        <div class="header-account">
+            <p>Become member</p>
+            <a asp-controller="Account" asp-action="Login" class="button">Sign in</a>
+        </div>
+    </div>
+</header>
