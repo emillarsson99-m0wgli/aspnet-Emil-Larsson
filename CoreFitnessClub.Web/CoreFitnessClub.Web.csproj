@@ -16,4 +16,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoreFitnessClub.Application\CoreFitnessClub.Application.csproj" />
+    <ProjectReference Include="..\CoreFitnessClub.Infrastructure\CoreFitnessClub.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Viewmodels\" />
+  </ItemGroup>
+
 </Project>
