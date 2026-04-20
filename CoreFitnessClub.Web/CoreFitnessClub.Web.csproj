@@ -21,4 +21,9 @@
     <ProjectReference Include="..\CoreFitnessClub.Infrastructure\CoreFitnessClub.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwroot\css\" />
+    <Folder Include="wwroot\images\" />
+  </ItemGroup>
+
 </Project>
