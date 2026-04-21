@@ -1,0 +1,34 @@
+﻿.gsi-material-button {
+    background-color: white;
+    border: 1px solid #747775;
+    border-radius: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+    .gsi-material-button .gsi-material-button-content-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+
+.gsi-material-button .gsi-material-button-icon {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.gsi-material-button .gsi-material-button-icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}

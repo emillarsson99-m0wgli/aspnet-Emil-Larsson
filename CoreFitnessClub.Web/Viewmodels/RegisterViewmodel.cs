@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace CoreFitnessClub.Web.Viewmodels;
+namespace CoreFitnessClub.Web.ViewModels;
 
-public class RegisterViewmodel
+public class RegisterViewModel
 {
     [Required(ErrorMessage = "Email is required.")]
     [EmailAddress(ErrorMessage = "Invalid email format.")]
