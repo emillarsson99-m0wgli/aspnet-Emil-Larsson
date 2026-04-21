@@ -1,5 +1,47 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Register";
 }
+
+<div class="signUp-container">
+    <div class="signUp-card">
+
+        <div class="signUp-message">
+            <h1>Become a Member</h1>
+            <p>
+                Sign up to continue your fitness journey with full access to your customized program,
+                training history, and progress tracking. Stay consistent, monitor your development,
+                and keep moving forward with the structure and support built into your account.
+            </p>
+        </div>
+
+        <hr class="signUp-hr" />
+
+        <div class="external-signUp">
+            <img class="signUp-icon" src="~/images/GoogleLogo.svg" alt="Google Logo" />
+            <img class="signUp-icon" src="~/images/FacebookLogo.svg" alt="Facebook Logo" />
+            <img class="signUp-icon" src="~/images/GithubLogo.svg" alt="Github Logo" />
+        </div>
+
+        <div class="signUp-divider">
+            <hr />
+            <span>OR CONTINUE WITH</span>
+            <hr />
+        </div>
+
+        <div class="user-signUp">
+            <div class="signUp-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="username@domain.com" />
+            </div>
+
+            <div class="signUp-button-row">
+                <button class="signUp-button">Continue <span>&gt;</span></button>
+            </div>
+
+            <div class="signUp-info">
+                <p>We will send a verification code to your email.</p>
+            </div>
+        </div>
+
+    </div>
+</div>

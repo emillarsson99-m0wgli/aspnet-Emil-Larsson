@@ -1,0 +1,86 @@
+﻿.footer-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-bg);
+    border-radius: 1rem;
+    margin: 0.5rem auto;
+    padding: 1rem;
+    max-width: 1320px;
+    max-height: 600px;
+    color: var(--white-text-bg);
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    padding: 50px 0;
+    width: 100%;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10rem;
+    padding: 0 5rem;
+}
+
+.footer-top .footer-top-txt {
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    color: var(--white-text-bg);
+    font-size: 28px;
+    max-width: 700px;
+}
+
+.footer-top .footer-top-txt h2 {
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.footer-middle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5rem;
+    font-family: "DM Sans", sans-serif;
+}
+
+.footer-location {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-location .location-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--white-text-bg);
+}
+
+.footer-location .location-description {
+    font-size: 14px;
+    color: var(--white-text-bg);
+    max-width: 20rem;
+}
+
+.footer-location .location-adress {
+    font-size: 14px;
+    color: var(--white-text-bg);
+}
+
+.footer-location .location-img {
+    width: 100%;
+    max-width: 175px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 0 2rem;
+    font-family: "DM Sans", sans-serif;
+    color: var(--white-text-bg);
+}

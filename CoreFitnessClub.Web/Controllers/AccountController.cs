@@ -1,4 +1,5 @@
 ﻿using CoreFitnessClub.Infrastructure.Identity;
+using CoreFitnessClub.Web.Viewmodels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -25,7 +26,7 @@ namespace CoreFitnessClub.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewmodel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
