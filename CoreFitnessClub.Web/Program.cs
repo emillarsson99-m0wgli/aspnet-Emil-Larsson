@@ -1,5 +1,6 @@
 using CoreFitnessClub.Infrastructure.Identity;
 using CoreFitnessClub.Web.Data;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,8 @@ builder.Services.AddAuthentication()
     {
         options.ClientId = builder.Configuration["Authentication:Google:ClientId"] ?? throw new InvalidOperationException("Google ClientId not found in configuration.");
         options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"] ?? throw new InvalidOperationException("Google ClientSecret not found in configuration.");
+
+        options.ClaimActions.MapJsonKey("email_verified", "email_verified");
     });
 
 

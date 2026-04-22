@@ -19,9 +19,19 @@
         <hr class="signUp-hr" />
 
         <div class="external-signUp">
-            <img class="signUp-icon" src="~/images/GoogleLogo.svg" alt="Google Logo" />
-            <img class="signUp-icon" src="~/images/FacebookLogo.svg" alt="Facebook Logo" />
-            <img class="signUp-icon" src="~/images/GithubLogo.svg" alt="Github Logo" />
+
+            @if (Model.ExternalProviders.Any())
+            {
+                <form asp-controller="Account" asp-action="ExternalLogin" method="post">
+                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+
+                    @foreach (var provider in Model.ExternalProviders)
+                    {
+                        <partial name="ExternalProviders/_@(provider)Button" />
+                    }
+
+                </form>
+            }
         </div>
 
         <div class="signUp-divider">

@@ -14,9 +14,16 @@ public class AccountController(UserManager<ApplicationUser> userManager, SignInM
     private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
 
     [HttpGet]
-    public IActionResult Register()
+    public async Task<IActionResult> Register(string? returnUrl = null)
     {
-        return View();
+        var schemes = await _signInManager.GetExternalAuthenticationSchemesAsync();
+
+        var vm = new RegisterViewModel
+        {
+            ReturnUrl = returnUrl,
+            ExternalProviders = [.. schemes.Select(x => x.Name)]
+        };
+        return View(vm);
     }
 
     [HttpPost, ValidateAntiForgeryToken]
@@ -116,9 +123,15 @@ public class AccountController(UserManager<ApplicationUser> userManager, SignInM
         if (result.Succeeded)
             return RedirectToLocal(returnUrl);
 
-        //return await HandleNewExternalLogin(info, returnUrl);
+        var email = info.Principal.FindFirstValue(ClaimTypes.Email);
 
-        return Ok();
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            logger.LogWarning("No email claim from {provider}.", info.LoginProvider);
+            return ExternalLoginFailed(returnUrl);
+        }
+
+        return await ExternalVerification(email, returnUrl);
     }
 
     [HttpPost]
@@ -143,14 +156,27 @@ public class AccountController(UserManager<ApplicationUser> userManager, SignInM
         return RedirectToAction("index", "Home");
     }
 
-    //private async Task<IActionResult> HandleNewExternalLogin(ExternalLoginInfo info, string? returnUrl = null)
-    //{
-    //    var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+    private async Task<IActionResult> ExternalVerification(string email, string? returnUrl = null)
+    {
+        return View("VerifyExternalLogin", new VerifyExternalLoginViewModel
+        {
+            ReturnUrl = returnUrl,
+            Email = email,
+        });
+    }
 
-    //    if (string.IsNullOrWhiteSpace(email))
+    //[HttpPost, ValidateAntiForgeryToken]
+    //public async Task<IActionResult> VerifyExternalLogin(VerifyExternalLoginViewModel vm)
+    //{
+    //    if (!ModelState.IsValid)
+    //        return View("VerifyExternalLogin", vm);
+
+    //    if (!string.Equals(vm.Code, "12345", StringComparison.Ordinal))
     //    {
-    //        logger.LogWarning("No email claim from {provider}.", info.LoginProvider);
-    //        return ExternalLoginFailed(returnUrl);
+    //        ModelState.AddModelError(nameof(vm.Code), "Invalid code.");
+    //        return View("VerifyExternalLogin", vm);
     //    }
+
+    //    var existingUser = await _userManager.FindByEmailAsync(email);
     //}
 }
