@@ -167,14 +167,40 @@ public class AccountController(UserManager<ApplicationUser> userManager, SignInM
         return RedirectToLocal(returnUrl);
     }
 
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Logout()
+    private async Task<IActionResult> CreateExternaluser(string email, ExternalLoginInfo info, string? returnUrl = null)
     {
-        await _signInManager.SignOutAsync();
-        return RedirectToAction("index", "Home");
+        var user = new ApplicationUser
+        {
+            UserName = email,
+            Email = email,
+            EmailConfirmed = true
+        };
+
+        var createResult = await _userManager.CreateAsync(user);
+        if (!createResult.Succeeded)
+        {
+            logger.LogError("Failed to create user {Email} : {Errors}",
+                email,
+                string.Join(",", createResult.Errors.Select(x => x.Description))
+                );
+            return ExternalLoginFailed(returnUrl);
+        }
+
+        var linkResult = await _userManager.AddLoginAsync(user, info);
+        if (!linkResult.Succeeded)
+        {
+            logger.LogError("Failed to link {Provider} to {Email} : {Errors}",
+                info.LoginProvider,
+                user.Email,
+                string.Join(",", linkResult.Errors.Select(x => x.Description))
+                );
+            return ExternalLoginFailed(returnUrl);
+        }
+
+        await _signInManager.SignInAsync(user, isPersistent: false);
+        return RedirectToLocal(returnUrl);
     }
+    
 
     private async Task<(ExternalLoginInfo info, string Email)?> GetExternalUserInfo()
     {
@@ -217,5 +243,11 @@ public class AccountController(UserManager<ApplicationUser> userManager, SignInM
         });
     }
 
-    
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+        return RedirectToAction("index", "Home");
+    }
 }
