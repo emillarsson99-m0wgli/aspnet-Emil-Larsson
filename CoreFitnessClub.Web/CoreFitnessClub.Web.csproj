@@ -22,4 +22,8 @@
     <ProjectReference Include="..\CoreFitnessClub.Infrastructure\CoreFitnessClub.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
 </Project>

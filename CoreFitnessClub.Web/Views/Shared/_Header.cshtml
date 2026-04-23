@@ -15,8 +15,20 @@
         </nav>
 
         <div class="header-account">
-            <p>Become member</p>
-            <a asp-controller="Account" asp-action="Login" class="header-btn">Sign in</a>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <span>Hej @User.Identity.Name</span>
+
+                <form asp-controller="Account" asp-action="Logout" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="link-button">Logga ut</button>
+                </form>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login">Logga in</a>
+                <a asp-controller="Account" asp-action="Register">Registrera</a>
+            }
         </div>
     </div>
 </header>
