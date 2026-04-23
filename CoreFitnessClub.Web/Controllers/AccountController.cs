@@ -167,7 +167,7 @@ public class AccountController(UserManager<ApplicationUser> userManager, SignInM
         return RedirectToLocal(returnUrl);
     }
 
-    private async Task<IActionResult> CreateExternaluser(string email, ExternalLoginInfo info, string? returnUrl = null)
+    private async Task<IActionResult> CreateExternalUser(string email, ExternalLoginInfo info, string? returnUrl = null)
     {
         var user = new ApplicationUser
         {
