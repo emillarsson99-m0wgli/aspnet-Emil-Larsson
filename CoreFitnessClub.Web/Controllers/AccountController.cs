@@ -111,28 +111,62 @@ public class AccountController(UserManager<ApplicationUser> userManager, SignInM
             return ExternalLoginFailed(returnUrl);
         }
 
-        var info = await _signInManager.GetExternalLoginInfoAsync();
-        if (info is null)
-        {
-            logger.LogWarning("External login info is null.");
+        var externalUser = await GetExternalUserInfo();
+        if (externalUser is null)
             return ExternalLoginFailed(returnUrl);
-        }
+
+        var (info, email) = externalUser.Value;
 
         var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
 
         if (result.Succeeded)
             return RedirectToLocal(returnUrl);
 
-        var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-
-        if (string.IsNullOrWhiteSpace(email))
-        {
-            logger.LogWarning("No email claim from {provider}.", info.LoginProvider);
-            return ExternalLoginFailed(returnUrl);
-        }
-
         return await ExternalVerification(email, returnUrl);
     }
+
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> VerifyExternalLogin(VerifyExternalLoginViewModel vm)
+    {
+        if (!ModelState.IsValid)
+            return View("VerifyExternalLogin", vm);
+
+        if (!string.Equals(vm.Code, "12345", StringComparison.Ordinal))
+        {
+            ModelState.AddModelError(nameof(vm.Code), "Invalid code.");
+            return View("VerifyExternalLogin", vm);
+        }
+
+        var externalUser = await GetExternalUserInfo();
+        if (externalUser is null)
+            return ExternalLoginFailed(vm.ReturnUrl);
+
+        var (info, email) = externalUser.Value;
+
+        var existingUser = await _userManager.FindByEmailAsync(email);
+        if (existingUser is not null) 
+            return await LinkExistingUser(existingUser, info, vm.ReturnUrl);
+
+        return await CreateExternalUser(email, info, vm.ReturnUrl);
+    }
+
+    private async Task<IActionResult> LinkExistingUser(ApplicationUser user, ExternalLoginInfo info, string? returnUrl = null)
+    {
+        var result = await _userManager.AddLoginAsync(user, info);
+        if (!result.Succeeded)
+        {
+            logger.LogError("Failed to link {Provider} to {Email} : {Errors}",
+                info.LoginProvider,
+                user.Email,
+                string.Join(",", result.Errors.Select(x => x.Description))
+                );
+            return ExternalLoginFailed(returnUrl);
+        }
+        await _signInManager.SignInAsync(user, isPersistent: false);
+        return RedirectToLocal(returnUrl);
+    }
+
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -140,6 +174,24 @@ public class AccountController(UserManager<ApplicationUser> userManager, SignInM
     {
         await _signInManager.SignOutAsync();
         return RedirectToAction("index", "Home");
+    }
+
+    private async Task<(ExternalLoginInfo info, string Email)?> GetExternalUserInfo()
+    {
+        var info = await _signInManager.GetExternalLoginInfoAsync();
+        if (info is null)
+        {
+            logger.LogWarning("External login info is null.");
+            return null;
+        }
+
+        var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            logger.LogWarning("No email claim from {provider}.", info.LoginProvider);
+            return null;
+        }
+        return (info, email);
     }
 
     private RedirectToActionResult ExternalLoginFailed(string? returnUrl = null)
@@ -165,18 +217,5 @@ public class AccountController(UserManager<ApplicationUser> userManager, SignInM
         });
     }
 
-    //[HttpPost, ValidateAntiForgeryToken]
-    //public async Task<IActionResult> VerifyExternalLogin(VerifyExternalLoginViewModel vm)
-    //{
-    //    if (!ModelState.IsValid)
-    //        return View("VerifyExternalLogin", vm);
-
-    //    if (!string.Equals(vm.Code, "12345", StringComparison.Ordinal))
-    //    {
-    //        ModelState.AddModelError(nameof(vm.Code), "Invalid code.");
-    //        return View("VerifyExternalLogin", vm);
-    //    }
-
-    //    var existingUser = await _userManager.FindByEmailAsync(email);
-    //}
+    
 }
