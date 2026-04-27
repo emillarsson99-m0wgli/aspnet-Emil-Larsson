@@ -4,6 +4,6 @@ namespace CoreFitnessClub.Application.Interfaces;
 
 public interface IWorkoutClassService
 {
-    Task<List<WorkoutClass>> GetWorkoutClassesAsync();
-    Task<WorkoutClass> GetWorkoutClassByIdAsync(int id);
+    Task<List<WorkoutClass>> GetAllAsync();
+    Task<WorkoutClass?> GetByIdAsync(int id);
 }

@@ -3,7 +3,7 @@ using CoreFitnessClub.Domain.Entities;
 
 namespace CoreFitnessClub.Application.Services;
 
-public class WorkoutClassService
+public class WorkoutClassService : IWorkoutClassService
 {
     private readonly IWorkoutClassRepo _workoutClassRepo;
 
