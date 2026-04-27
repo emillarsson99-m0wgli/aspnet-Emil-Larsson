@@ -1,9 +1,13 @@
+using CoreFitnessClub.Application.Interfaces;
+using CoreFitnessClub.Application.Services;
 using CoreFitnessClub.Infrastructure.Data;
 using CoreFitnessClub.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using CoreFitnessClub.Infrastructure.Repos;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +35,14 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IWorkoutClassService, WorkoutClassService>();
+builder.Services.AddScoped<IMembershipService, MembershipService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+
+builder.Services.AddScoped<IWorkoutClassRepo, WorkoutClassRepo>();
+builder.Services.AddScoped<IMembershipRepo, MembershipRepo>();
+builder.Services.AddScoped<IBookingRepo, BookingRepo>();
 
 builder.Services.AddAuthentication()
     .AddGoogle(options =>
