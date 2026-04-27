@@ -1,0 +1,34 @@
+﻿<header class="site-header">
+    <div class="header-container">
+        <div class="header-logo">
+            <a asp-controller="Home" asp-action="Index">
+                <img src="~/images/CoreFitnessLogo.svg" alt="Core Fitness Logo" />
+            </a>
+        </div>
+
+        <nav class="header-nav">
+            <a asp-controller="Home" asp-action="FitnessCenters">Fitness Centers</a>
+            <a asp-controller="Home" asp-action="Memberships">Memberships</a>
+            <a asp-controller="Home" asp-action="Training">Training</a>
+            <a asp-controller="Home" asp-action="CustomerService">Customer Service</a>
+            <a asp-controller="Home" asp-action="Store">Store</a>
+        </nav>
+
+        <div class="header-account">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <span>Hej @User.Identity.Name</span>
+
+                <form asp-controller="Account" asp-action="Logout" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="link-button">Logga ut</button>
+                </form>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login">Logga in</a>
+                <a asp-controller="Account" asp-action="Register">Registrera</a>
+            }
+        </div>
+    </div>
+</header>

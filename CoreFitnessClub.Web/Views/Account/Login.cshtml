@@ -1,0 +1,93 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<section class="log-in-container">
+    <div class="login-card">
+
+        @if (TempData["Error"] is string error)
+        {
+            <div class="alert alert-danger" role="alert">
+                <p class="text-red-400">@error</p>
+            </div>
+        }
+        
+
+        <div class="welcome-message">
+            <h1>Welcome back!</h1>
+            <p>
+                Log in to continue your fitness journey with full access to your customized program,
+                training history, and progress tracking. Stay consistent, monitor your development,
+                and keep moving forward with the structure and support built into your account.
+            </p>
+        </div>
+
+        <hr class="login-hr" />
+
+        <div class="external-providers">
+            
+            @if (Model.ExternalProviders.Any())
+            {
+                <form asp-controller="Account" asp-action="ExternalLogin" method="post">
+                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+
+                    @foreach (var provider in Model.ExternalProviders)
+                    {
+                        <partial name="ExternalProviders/_@(provider)Button"/>
+                    }
+
+                </form>
+            }
+
+        </div>
+
+        <div class="login-divider">
+            <hr />
+            <span>OR CONTINUE WITH</span>
+            <hr />
+        </div>
+
+        <form asp-controller="Account" asp-action="Login" method="post" class="user-login">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="login-group">
+                <label asp-for="Email">Email Address *</label>
+                <input asp-for="Email" type="email" placeholder="username@domain.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="login-group">
+                <div class="password-row">
+                    <label asp-for="Password">Password *</label>
+                    <a asp-controller="Account" asp-action="ForgotPassword" class="forgot-password">Forgot password?</a>
+                </div>
+
+                <input asp-for="Password" type="password" placeholder="Enter your password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="login-button-row">
+                <button type="submit" class="login-button">
+                    Continue <span>&gt;</span>
+                </button>
+            </div>
+
+            <label class="terms-and-conditions">
+                <input asp-for="RememberMe" type="checkbox" />
+                <span class="custom-checkbox"></span>
+                Accept user terms and conditions
+            </label>
+        </form>
+
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
