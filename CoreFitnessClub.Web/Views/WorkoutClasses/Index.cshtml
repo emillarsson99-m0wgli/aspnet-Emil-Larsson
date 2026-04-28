@@ -1,0 +1,27 @@
+﻿@model List<CoreFitnessClub.Domain.Entities.WorkoutClass>
+
+@{
+    ViewData["Title"] = "Träningspass";
+}
+
+<h1>Träningspass</h1>
+
+@if (!Model.Any())
+{
+    <p>Det finns inga pass just nu.</p>
+}
+else
+{
+    <div>
+        @foreach (var item in Model)
+        {
+            <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+                <h3>@item.Name</h3>
+                <p>Kategori: @item.Category</p>
+                <p>Instruktör: @item.Instructor</p>
+                <p>Datum: @item.Date.ToShortDateString()</p>
+                <p>Tid: @item.StartTime - @item.EndTime</p>
+            </div>
+        }
+    </div>
+}
