@@ -47,6 +47,23 @@
     margin-bottom: 1.5rem;
 }
 
-    .class-card-body p {
-        margin: 0.4rem 0;
-    }
+.class-card-body p {
+    margin: 0.4rem 0;
+}
+
+.alert {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.alert-success {
+    background: #e7f7ec;
+    color: #176b35;
+}
+
+.alert-error {
+    background: #fde8e8;
+    color: #9b1c1c;
+}
