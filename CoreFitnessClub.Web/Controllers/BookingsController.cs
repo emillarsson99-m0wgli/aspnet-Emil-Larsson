@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreFitnessClub.Web.Controllers;
 
 [Authorize]
-public class BookingController : Controller
+public class BookingsController : Controller
 {
     private readonly IBookingService _bookingService;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public BookingController(IBookingService bookingService, UserManager<ApplicationUser> userManager)
+    public BookingsController(IBookingService bookingService, UserManager<ApplicationUser> userManager)
     {
         _bookingService = bookingService;
         _userManager = userManager;
