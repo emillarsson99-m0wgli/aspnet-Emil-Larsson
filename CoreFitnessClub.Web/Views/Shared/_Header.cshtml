@@ -21,13 +21,13 @@
 
                 <form asp-controller="Account" asp-action="Logout" method="post">
                     @Html.AntiForgeryToken()
-                    <button type="submit" class="link-button">Logga ut</button>
+                    <button type="submit" class="button">Logga ut</button>
                 </form>
             }
             else
             {
-                <a asp-controller="Account" asp-action="Login">Logga in</a>
-                <a asp-controller="Account" asp-action="Register">Registrera</a>
+                <a asp-controller="Account" asp-action="Login" class="button">Logga in</a>
+                <a asp-controller="Account" asp-action="Register" class="button">Registrera</a>
             }
         </div>
     </div>

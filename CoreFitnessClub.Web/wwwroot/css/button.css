@@ -8,6 +8,7 @@
     cursor: pointer;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
+    text-decoration: none;
 }
 
 .button:hover {
@@ -53,5 +54,43 @@
 
 .error-button:hover {
     background-color: var(--dark-bg);
+    color: var(--white-text-bg);
+}
+
+.book-button {
+    width: 100%;
+    border: none;
+    border-radius: 999px;
+    padding: 0.85rem 1rem;
+    background: var(--accent-color);
+    color: var(--black-text);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.book-button:hover {
+    background: var(--dark-bg);
+    color: var(--white-text-bg);
+}
+
+.login-button {
+    border: none;
+    background: var(--accent-color);
+    color: var(--black-text);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 100%;
+    max-width: 700px;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+.login-button:hover {
+    background: var(--dark-bg);
     color: var(--white-text-bg);
 }

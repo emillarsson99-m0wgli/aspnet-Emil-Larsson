@@ -1,4 +1,5 @@
 ﻿using CoreFitnessClub.Domain.Entities;
+using CoreFitnessClub.Infrastructure.Data.Seed;
 using CoreFitnessClub.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -29,5 +30,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         builder.Entity<Booking>()
             .HasIndex(b => new { b.UserId, b.WorkoutClassId })
             .IsUnique();
+
+        WorkoutClassSeeder.SeedWorkoutClasses(builder);
     }
 }

@@ -4,24 +4,41 @@
     ViewData["Title"] = "Träningspass";
 }
 
-<h1>Träningspass</h1>
-
-@if (!Model.Any())
-{
-    <p>Det finns inga pass just nu.</p>
-}
-else
-{
-    <div>
-        @foreach (var item in Model)
-        {
-            <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
-                <h3>@item.Name</h3>
-                <p>Kategori: @item.Category</p>
-                <p>Instruktör: @item.Instructor</p>
-                <p>Datum: @item.Date.ToShortDateString()</p>
-                <p>Tid: @item.StartTime - @item.EndTime</p>
-            </div>
-        }
+<section class="classes-page">
+    <div class="classes-header">
+        <h1>Classes</h1>
+        <p>Choose a class and book your spot!</p>
     </div>
-}
+
+    @if (!Model.Any())
+    {
+        <p>There are currently no classes available.</p>
+    }
+    else
+    {
+        <div class="classes-grid">
+            @foreach (var item in Model)
+            {
+                <article class="class-card">
+                    <div class="class-card-header">
+                        <span class="class-category">@item.Category</span>
+                        <h2>@item.Name</h2>
+                    </div>
+
+                    <div class="class-card-body">
+                        <p><strong>Instructor:</strong> @item.Instructor</p>
+                        <p><strong>Date:</strong> @item.Date.ToShortDateString()</p>
+                        <p><strong>Time:</strong> @item.StartTime.ToString(@"hh\:mm") - @item.EndTime.ToString(@"hh\:mm")</p>
+                        <p><strong>Spots:</strong> @item.Capacity</p>
+                    </div>
+
+                    <form asp-controller="Bookings" asp-action="Book" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="workoutClassId" value="@item.Id" />
+                        <button type="submit" class="book-button">Book class</button>
+                    </form>
+                </article>
+            }
+        </div>
+    }
+</section>

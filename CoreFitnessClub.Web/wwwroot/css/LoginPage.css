@@ -136,24 +136,6 @@
     padding: 1.5rem 0;
 }
 
-.login-button {
-    border: none;
-    background: var(--accent-color);
-    color: var(--black-text);
-    border-radius: 999px;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    font-weight: 500;
-    width: 100%;
-    max-width: 700px;
-    font-family: "Poppins", sans-serif;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
 .terms-and-conditions {
     display: flex;
     justify-content: center;

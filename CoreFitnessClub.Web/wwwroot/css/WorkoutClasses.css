@@ -1,0 +1,52 @@
+﻿.classes-page {
+    padding: 3rem 2rem;
+}
+
+.classes-header {
+    margin-bottom: 2rem;
+}
+
+.classes-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.classes-header p {
+    color: #666;
+}
+
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.class-card {
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 1.5rem;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.class-card h2 {
+    margin: 0.5rem 0 1rem;
+}
+
+.class-category {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: var(--accent-color);
+    color: var(--dark-text);
+}
+
+.class-card-body {
+    margin-bottom: 1.5rem;
+}
+
+    .class-card-body p {
+        margin: 0.4rem 0;
+    }

@@ -1,7 +1,7 @@
 ﻿using CoreFitnessClub.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CoreFitnessClub.Infrastructure.Data;
+namespace CoreFitnessClub.Infrastructure.Data.Seed;
 
 public static class WorkoutClassSeeder
 {
