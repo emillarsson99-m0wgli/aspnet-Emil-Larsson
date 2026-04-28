@@ -1,0 +1,67 @@
+﻿@model List<CoreFitnessClub.Domain.Entities.Booking>
+
+@{
+    ViewData["Title"] = "Mina bokningar";
+}
+
+<section class="bookings-page">
+    <div class="bookings-header">
+        <h1>My classes</h1>
+        <p>See your booked classes.</p>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-error">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="empty-bookings">
+            <h2>You have not booked any classes yet.</h2>
+            <p>See the classes we offer!</p>
+            <a asp-controller="WorkoutClasses" asp-action="Index" class="book-button">
+                See classes
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="bookings-grid">
+            @foreach (var booking in Model)
+            {
+                <article class="booking-card">
+                    <span class="booking-category">@booking.WorkoutClass.Category</span>
+
+                    <h2>@booking.WorkoutClass.Name</h2>
+
+                    <div class="booking-info">
+                        <p><strong>Instructor:</strong> @booking.WorkoutClass.Instructor</p>
+                        <p><strong>Date:</strong> @booking.WorkoutClass.Date.ToShortDateString()</p>
+                        <p>
+                            <strong>Time:</strong>
+                            @booking.WorkoutClass.StartTime.ToString(@"hh\:mm")
+                            -
+                            @booking.WorkoutClass.EndTime.ToString(@"hh\:mm")
+                        </p>
+                    </div>
+
+                    <form asp-controller="Bookings" asp-action="Cancel" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="bookingId" value="@booking.Id" />
+                        <button type="submit" class="cancel-button">Cancel</button>
+                    </form>
+                </article>
+            }
+        </div>
+    }
+</section>
