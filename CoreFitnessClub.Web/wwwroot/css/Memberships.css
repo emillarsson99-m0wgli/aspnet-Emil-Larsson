@@ -1,0 +1,151 @@
+﻿.membership-offers-section {
+    padding: 4rem 0;
+}
+
+.membership-offers-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+    .membership-offers-header h1 {
+        font-family: Poppins, sans-serif;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: var(--dark-bg);
+    }
+
+.membership-offers-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.offers-box {
+    background-color: var(--white-text-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 377px;
+    min-height: 610px;
+    padding: 1.6rem;
+    border-radius: 1rem;
+}
+
+.offers-top img {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 1.5rem;
+}
+
+.offers-box h4 {
+    font-family: Poppins, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark-bg);
+    margin-bottom: 20px;
+}
+
+.offers-hr {
+    border: none;
+    border-top: 1px solid var(--grey-text2);
+    margin: 20px 0;
+}
+
+.offers-middle {
+    font-family: "DM Sans", sans-serif;
+    color: var(--grey-text2);
+}
+
+.offers-middle-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-top: 1.5rem;
+}
+
+    .offers-middle-list img {
+        width: 20px;
+        height: 20px;
+    }
+
+.offers-middle-list-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.offers-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--dark-bg);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.offers-bottom-pricing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    color: var(--white-text-bg);
+    font-family: Poppins, sans-serif;
+}
+
+.membership-pricing {
+    display: flex;
+    align-items: baseline;
+    height: 55px;
+    margin: 0;
+    gap: 0.3rem;
+}
+
+.membership-price {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.membership-monthly {
+    font-size: 14px;
+}
+
+.offers-bottom-left {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.monthly-classes {
+    display: flex;
+    height: 40px;
+    margin: 0;
+}
+
+.offers-bottom-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.offers-bottom-description {
+    display: flex;
+    font-family: "DM Sans", sans-serif;
+    color: var(--white-text-bg);
+    font-size: 16px;
+}
+
+.offers-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.2rem;
+    background-color: var(--lime, #dfff3f);
+    color: var(--dark-bg, #070312);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .offers-btn:hover {
+        opacity: 0.85;
+    }

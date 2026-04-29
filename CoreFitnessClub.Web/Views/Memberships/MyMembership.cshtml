@@ -1,0 +1,62 @@
+﻿@using CoreFitnessClub.Web.ViewModels.Memberships
+@model CreateMembershipViewModel
+
+@{
+    ViewData["Title"] = "Memberships";
+
+    var offers = new List<MembershipsOfferViewmodel>
+    {
+        new()
+        {
+            Type = "Standard",
+            Title = "Standard Membership",
+            Description = "With the Standard Membership, get access to our full range of gym facilities.",
+            Price = 495.00m,
+            MonthlyClasses = 20,
+            Benefits = new List<string>
+            {
+                "Standard Locker",
+                "High-energy group fitness classes",
+                "Motivating & supportive environment"
+            }
+        },
+        new()
+        {
+            Type = "Premium",
+            Title = "Premium Membership",
+            Description = "With the Premium Membership, get access to our full range of gym facilities.",
+            Price = 595.00m,
+            MonthlyClasses = 20,
+            Benefits = new List<string>
+            {
+                "Priority Support & Premium Locker",
+                "High-energy group fitness classes",
+                "Motivating & supportive environment"
+            }
+        }
+    };
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Memberships.css" />
+}
+
+<section class="membership-offers-section">
+    <div class="membership-offers-header">
+        <h1>Our Membership Offers</h1>
+    </div>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-error">@TempData["ErrorMessage"]</div>
+    }
+
+    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+    <div class="membership-offers-grid">
+        @foreach (var offer in offers)
+        {
+            <partial name="_MembershipOfferCard" model="offer" />
+        }
+    </div>
+</section>

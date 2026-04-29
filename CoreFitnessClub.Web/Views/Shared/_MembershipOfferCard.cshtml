@@ -1,0 +1,53 @@
+﻿@model CoreFitnessClub.Web.ViewModels.Memberships.MembershipsOfferViewmodel
+
+<div class="offers-box">
+    <div class="offers-top">
+        <img src="~/images/logoicon.svg" alt="@Model.Title" />
+        <h4>@Model.Title</h4>
+    </div>
+
+    <hr class="offers-hr" />
+
+    <div class="offers-middle">
+        <p>@Model.Description</p>
+
+        <div class="offers-middle-list">
+            @foreach (var benefit in Model.Benefits)
+            {
+                <div class="offers-middle-list-item">
+                    <img src="~/images/checkmark.svg" alt="" />
+                    <p>@benefit</p>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="offers-bottom">
+        <div class="offers-bottom-pricing">
+            <div class="offers-bottom-left">
+                <div class="membership-pricing">
+                    <p class="membership-price">@Model.Price.ToString("0.00")</p>
+                    <p class="membership-monthly">/monthly</p>
+                </div>
+
+                <div class="monthly-classes">
+                    <p>* Monthly @Model.MonthlyClasses Classes</p>
+                </div>
+            </div>
+
+            <div class="offers-bottom-right">
+                <form asp-controller="Memberships" asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="Type" value="@Model.Type" />
+                    <button type="submit" class="offers-btn">Join now ></button>
+                </form>
+            </div>
+        </div>
+
+        <hr class="offers-hr" />
+
+        <div class="offers-bottom-description">
+            <p>Try Any Membership Free for 1 Week</p>
+        </div>
+    </div>
+</div>
