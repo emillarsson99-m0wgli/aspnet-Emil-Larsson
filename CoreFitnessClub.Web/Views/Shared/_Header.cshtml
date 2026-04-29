@@ -19,9 +19,11 @@
             {
                 <span>Hej @User.Identity.Name</span>
 
+                <a asp-controller="MyPage" asp-action="Index" class="button">Min sida</a>
+
                 <form asp-controller="Account" asp-action="Logout" method="post">
                     @Html.AntiForgeryToken()
-                    <button type="submit" class="button">Logga ut</button>
+                    <button class="button" type="submit">Logga ut</button>
                 </form>
             }
             else

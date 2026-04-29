@@ -37,4 +37,35 @@ public class BookingsController : Controller
         TempData["SuccessMessage"] = "Class booked successfully!";
         return RedirectToAction("Index", "WorkoutClasses");
     }
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> Cancel(int bookingId)
+    {
+        var userId = _userManager.GetUserId(User);
+
+        if (userId == null)
+            return Challenge();
+
+        var success = await _bookingService.CancelBookingAsync(userId, bookingId);
+
+        if (!success)
+        {
+            TempData["ErrorMessage"] = "Unable to cancel the booking. It may have already been canceled or does not exist.";
+            return RedirectToAction("MyBookings");
+        }
+        TempData["SuccessMessage"] = "Booking canceled successfully!";
+        return RedirectToAction("MyBookings");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> MyBookings()
+    {
+        var userId = _userManager.GetUserId(User);
+
+        if (userId == null)
+            return Challenge();
+
+        var bookings = await _bookingService.GetBookingsByUserIdAsync(userId);
+        return View(bookings);
+    }
 }

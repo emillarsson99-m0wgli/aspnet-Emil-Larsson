@@ -10,11 +10,11 @@
     font-weight: 500;
     text-decoration: none;
 }
-
-.button:hover {
-    background-color: var(--white-text-bg);
-    color: var(--dark-bg);
-}
+    .button:hover {
+        background-color: var(--white-text-bg);
+        color: var(--dark-bg);
+        transition: background-color 0.3s ease;
+    }
 
 .delete-button {
     color: red;
@@ -30,8 +30,8 @@
     background: var(--accent-color);
     color: var(--black-text);
     border-radius: 999px;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    padding: .5rem 1rem;
+    font-size: 18px;
     font-weight: 500;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
@@ -39,6 +39,11 @@
     align-items: center;
     gap: 10px;
 }
+    .save-button:hover {
+        background-color: var(--dark-bg);
+        color: var(--white-text-bg);
+        transition: background-color 0.3s ease;
+    }
 
 .error-button {
     background-color: var(--accent-color);
@@ -51,27 +56,29 @@
     font-family: "Poppins", sans-serif;
     font-weight: 500;
 }
-
-.error-button:hover {
-    background-color: var(--dark-bg);
-    color: var(--white-text-bg);
-}
+    .error-button:hover {
+        background-color: var(--dark-bg);
+        color: var(--white-text-bg);
+        transition: background-color 0.3s ease;
+    }
 
 .book-button {
-    width: 100%;
-    border: none;
-    border-radius: 999px;
-    padding: 0.85rem 1rem;
-    background: var(--accent-color);
+    background-color: var(--accent-color);
     color: var(--black-text);
-    font-weight: 600;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 16px;
     cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    text-decoration: none;
 }
-
-.book-button:hover {
-    background: var(--dark-bg);
-    color: var(--white-text-bg);
-}
+    .book-button:hover {
+        background: var(--dark-bg);
+        color: var(--white-text-bg);
+        transition: background-color 0.3s ease;
+    }
 
 .login-button {
     border: none;
@@ -90,7 +97,24 @@
     justify-content: center;
     gap: 12px;
 }
-.login-button:hover {
-    background: var(--dark-bg);
-    color: var(--white-text-bg);
+    .login-button:hover {
+        background: var(--dark-bg);
+        color: var(--white-text-bg);
+        transition: background-color 0.3s ease;
+    }
+
+.cancel-button {
+    width: 100%;
+    margin: 1rem auto 0;
+    border: none;
+    border-radius: 999px;
+    padding: 0.85rem 1rem;
+    background: #9b1c1c;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
 }
+   .cancel-button:hover {
+       background: var(--dark-bg);
+       transition: background-color 0.3s ease;
+    }
