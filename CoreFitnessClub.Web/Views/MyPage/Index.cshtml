@@ -31,10 +31,11 @@
 
                 <hr class="account-menu-hr" />
 
-                <form asp-controller="Account" asp-action="Logout" method="post">
+                <form asp-controller="Account" asp-action="Logout" method="post" class="logout-form">
                     @Html.AntiForgeryToken()
-                    <button type="submit" class="menu-option" id="sign-out">
-                        Sign Out <span>></span>
+                    <button type="submit" class="logout-menu-option">
+                        <span>Sign Out</span>
+                        <span>></span>
                     </button>
                 </form>
             </div>

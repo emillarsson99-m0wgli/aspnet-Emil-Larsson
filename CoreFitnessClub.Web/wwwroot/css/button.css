@@ -30,8 +30,8 @@
     background: var(--accent-color);
     color: var(--black-text);
     border-radius: 999px;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    padding: .5rem 1rem;
+    font-size: 18px;
     font-weight: 500;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
@@ -39,6 +39,11 @@
     align-items: center;
     gap: 10px;
 }
+    .save-button:hover {
+        background-color: var(--dark-bg);
+        color: var(--white-text-bg);
+        transition: background-color 0.3s ease;
+    }
 
 .error-button {
     background-color: var(--accent-color);
@@ -99,7 +104,7 @@
     }
 
 .cancel-button {
-    width: 50%;
+    width: 100%;
     margin: 1rem auto 0;
     border: none;
     border-radius: 999px;

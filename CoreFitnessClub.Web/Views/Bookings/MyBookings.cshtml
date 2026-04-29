@@ -55,7 +55,7 @@
                         </p>
                     </div>
 
-                    <form asp-controller="Bookings" asp-action="Cancel" method="post">
+                    <form asp-controller="Bookings" asp-action="Cancel" method="post" class="cancel-button-container">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="bookingId" value="@booking.Id" />
                         <button type="submit" class="cancel-button">Cancel</button>
