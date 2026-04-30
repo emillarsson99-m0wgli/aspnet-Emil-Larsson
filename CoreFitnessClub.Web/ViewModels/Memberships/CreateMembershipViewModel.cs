@@ -7,4 +7,5 @@ public class CreateMembershipViewModel
     [Required(ErrorMessage = "Du måste välja medlemskapstyp.")]
     [Display(Name = "Medlemskapstyp")]
     public string Type { get; set; } = string.Empty;
+    public List<AccordionViewmodel> AccordionItems { get; set; } = new();
 }
