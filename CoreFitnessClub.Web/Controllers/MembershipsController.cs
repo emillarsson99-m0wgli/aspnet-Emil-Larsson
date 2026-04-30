@@ -90,6 +90,27 @@ namespace CoreFitnessClub.Web.Controllers
             return RedirectToAction(nameof(MyMembership));
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CancelMembership()
+        {
+            var userId = _userManager.GetUserId(User);
+
+            if (userId == null)
+                return Challenge();
+
+            var success = await _membershipService.DeleteAsync(userId);
+
+            if (!success)
+            {
+                TempData["ErrorMessage"] = "Membership could not be removed.";
+                return RedirectToAction(nameof(MyMembership));
+            }
+
+            TempData["SuccessMessage"] = "Your membership has been cancelled successfully.";
+            return RedirectToAction(nameof(MyMembership));
+        }
+
         private CreateMembershipViewModel BuildCreateMembershipViewModel()
         {
             return new CreateMembershipViewModel
