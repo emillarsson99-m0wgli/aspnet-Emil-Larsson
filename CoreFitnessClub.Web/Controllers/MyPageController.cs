@@ -40,5 +40,45 @@ public class MyPageController : Controller
         };
         return View(model);
     }
-    
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> UpdateProfile(MyPageViewModel model)
+    {
+        if (!ModelState.IsValid)
+            return View("Index", model);
+
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user == null)
+            return Challenge();
+
+        user.FirstName = model.FirstName;
+        user.LastName = model.LastName;
+        user.PhoneNumber = model.PhoneNumber;
+
+        if (user.Email != model.Email)
+        {
+            user.Email = model.Email;
+            user.UserName = model.Email;
+            user.NormalizedEmail = model.Email.ToUpper();
+            user.NormalizedUserName = model.Email.ToUpper();
+            user.EmailConfirmed = false;
+        }
+
+        var result = await _userManager.UpdateAsync(user);
+
+        if (!result.Succeeded)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View("Index", model);
+        }
+
+        TempData["SuccessMessage"] = "Your profile has been updated";
+        return RedirectToAction(nameof(Index));
+    }
 }
