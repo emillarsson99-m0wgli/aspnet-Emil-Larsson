@@ -33,4 +33,16 @@ public class MembershipService : IMembershipService
 
         await _membershipRepo.AddAsync(membership);
     }
+
+    public async Task<bool> DeleteAsync(string userId)
+    {
+        var existingMembership = await _membershipRepo.GetByUserIdAsync(userId);
+
+        if (existingMembership == null)
+            return false;
+
+        await _membershipRepo.DeleteAsync(existingMembership);
+
+        return true;
+    }
 }
