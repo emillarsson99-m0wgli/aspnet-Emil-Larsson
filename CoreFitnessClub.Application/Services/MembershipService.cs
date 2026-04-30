@@ -3,13 +3,10 @@ using CoreFitnessClub.Domain.Entities;
 
 namespace CoreFitnessClub.Application.Services;
 
-public class MembershipService : IMembershipService
+public class MembershipService(IMembershipRepo membershipRepo) : IMembershipService
 {
-    private readonly IMembershipRepo _membershipRepo;
-    public MembershipService(IMembershipRepo membershipRepo)
-    {
-        _membershipRepo = membershipRepo;
-    }
+    private readonly IMembershipRepo _membershipRepo = membershipRepo;
+
     public async Task<Membership?> GetByUserIdAsync(string userId)
     {
         return await _membershipRepo.GetByUserIdAsync(userId);
@@ -36,12 +33,12 @@ public class MembershipService : IMembershipService
 
     public async Task<bool> DeleteAsync(string userId)
     {
-        var existingMembership = await _membershipRepo.GetByUserIdAsync(userId);
+        var membership = await _membershipRepo.GetByUserIdAsync(userId);
 
-        if (existingMembership == null)
+        if (membership == null)
             return false;
 
-        await _membershipRepo.DeleteAsync(existingMembership);
+        await _membershipRepo.DeleteAsync(membership);
 
         return true;
     }

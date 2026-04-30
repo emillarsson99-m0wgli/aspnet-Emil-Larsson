@@ -15,12 +15,13 @@ namespace CoreFitnessClub.Web.Controllers
         private readonly IMembershipService _membershipService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public MembershipsController(IMembershipService membershipService, UserManager<ApplicationUser> userManager)
+        public MembershipsController(
+            IMembershipService membershipService,
+            UserManager<ApplicationUser> userManager)
         {
             _membershipService = membershipService;
             _userManager = userManager;
         }
-
         [HttpGet]
         public async Task<IActionResult> MyMembership()
         {

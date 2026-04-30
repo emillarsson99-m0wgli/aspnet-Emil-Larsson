@@ -48,6 +48,13 @@
             <a asp-controller="WorkoutClasses" asp-action="Index" class="membership-link">
                 Book classes
             </a>
+
+            <form asp-controller="Memberships" asp-action="CancelMembership" method="post" class="membership-delete-form">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="membership-delete-button">
+                    Cancel membership
+                </button>
+            </form>
         </div>
     }
 </section>

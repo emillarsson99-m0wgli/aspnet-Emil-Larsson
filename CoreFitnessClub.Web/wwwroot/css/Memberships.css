@@ -225,3 +225,109 @@
     margin: 20px 0;
     display: block;
 }
+
+.membership-page {
+    padding: 4rem 1rem;
+}
+
+.membership-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+    .membership-header h1 {
+        font-family: Poppins, sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--dark-bg);
+    }
+
+    .membership-header p {
+        font-family: "DM Sans", sans-serif;
+        color: var(--grey-text2);
+    }
+
+.membership-card {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background-color: var(--white-text-bg);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+    .membership-card h2 {
+        font-family: Poppins, sans-serif;
+        font-size: 2rem;
+        margin: 1rem 0 1.5rem;
+        color: var(--dark-bg);
+    }
+
+    .membership-card p {
+        font-family: "DM Sans", sans-serif;
+        margin: 0.75rem 0;
+        color: var(--dark-bg);
+    }
+
+.membership-status {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    background-color: var(--lime, #dfff3f);
+    color: var(--dark-bg);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.membership-link,
+.membership-delete-button {
+    display: inline-block;
+    min-width: 170px;
+    border: none;
+    border-radius: 999px;
+    padding: 0.9rem 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 1.5rem;
+}
+
+.membership-link {
+    background-color: var(--dark-bg);
+    color: var(--white-text-bg);
+}
+
+.membership-delete-form {
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.membership-delete-button {
+    background-color: #a61b1b;
+    color: #fff;
+}
+
+    .membership-link:hover,
+    .membership-delete-button:hover {
+        opacity: 0.85;
+    }
+
+.alert {
+    max-width: 540px;
+    margin: 0 auto 1.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.alert-success {
+    background: #e7f7ec;
+    color: #176b35;
+}
+
+.alert-error {
+    background: #fde8e8;
+    color: #9b1c1c;
+}
