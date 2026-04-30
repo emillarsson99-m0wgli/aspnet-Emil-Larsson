@@ -20,17 +20,24 @@ public class MyPageController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var userId = _userManager.GetUserId(User);
+        var user = await _userManager.GetUserAsync(User);
 
-        if (userId == null)
+        if (user == null)
             return Challenge();
 
-        var bookings = await _bookingService.GetBookingsByUserIdAsync(userId);
-        var membership = await _membershipService.GetByUserIdAsync(userId);
+        var bookings = await _bookingService.GetBookingsByUserIdAsync(user.Id);
+        var membership = await _membershipService.GetByUserIdAsync(user.Id);
 
-        ViewBag.Membership = membership;
-
-        return View(bookings);
+        var model = new MyPageViewModel
+        {
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email ?? string.Empty,
+            PhoneNumber = user.PhoneNumber ?? string.Empty,
+            Bookings = bookings,
+            Membership = membership
+        };
+        return View(model);
     }
     
 }
