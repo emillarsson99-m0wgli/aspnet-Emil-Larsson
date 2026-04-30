@@ -35,6 +35,7 @@ public class MyPageController : Controller
             LastName = user.LastName,
             Email = user.Email ?? string.Empty,
             PhoneNumber = user.PhoneNumber ?? string.Empty,
+            ExisitingProfileImagePath = user.ProfileImagePath,
             Bookings = bookings,
             Membership = membership
         };
