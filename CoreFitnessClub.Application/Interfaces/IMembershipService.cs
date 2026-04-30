@@ -6,4 +6,5 @@ public interface IMembershipService
 {
     Task<Membership?> GetByUserIdAsync(string userId);
     Task CreateAsync (string userId, string membershipType);
+    Task<bool> DeleteAsync (string userId);
 }

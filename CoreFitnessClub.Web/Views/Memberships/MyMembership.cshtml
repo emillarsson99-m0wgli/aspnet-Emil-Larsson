@@ -1,62 +1,53 @@
-﻿@using CoreFitnessClub.Web.ViewModels.Memberships
-@model CreateMembershipViewModel
+﻿@model CoreFitnessClub.Domain.Entities.Membership?
 
 @{
-    ViewData["Title"] = "Memberships";
-
-    var offers = new List<MembershipsOfferViewmodel>
-    {
-        new()
-        {
-            Type = "Standard",
-            Title = "Standard Membership",
-            Description = "With the Standard Membership, get access to our full range of gym facilities.",
-            Price = 495.00m,
-            MonthlyClasses = 20,
-            Benefits = new List<string>
-            {
-                "Standard Locker",
-                "High-energy group fitness classes",
-                "Motivating & supportive environment"
-            }
-        },
-        new()
-        {
-            Type = "Premium",
-            Title = "Premium Membership",
-            Description = "With the Premium Membership, get access to our full range of gym facilities.",
-            Price = 595.00m,
-            MonthlyClasses = 20,
-            Benefits = new List<string>
-            {
-                "Priority Support & Premium Locker",
-                "High-energy group fitness classes",
-                "Motivating & supportive environment"
-            }
-        }
-    };
+    ViewData["Title"] = "My Membership";
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/Memberships.css" />
 }
 
-<section class="membership-offers-section">
-    <div class="membership-offers-header">
-        <h1>Our Membership Offers</h1>
+<section class="membership-page">
+    <div class="membership-header">
+        <h1>My Membership</h1>
+        <p>Here you can see your current membership status.</p>
     </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
 
     @if (TempData["ErrorMessage"] != null)
     {
         <div class="alert alert-error">@TempData["ErrorMessage"]</div>
     }
 
-    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+    @if (Model == null)
+    {
+        <div class="membership-card">
+            <h2>You do not have an active membership</h2>
+            <p>Choose a membership plan to get access to CoreFitness.</p>
 
-    <div class="membership-offers-grid">
-        @foreach (var offer in offers)
-        {
-            <partial name="_MembershipOfferCard" model="offer" />
-        }
-    </div>
+            <a asp-controller="Memberships" asp-action="Create" class="membership-link">
+                View memberships
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="membership-card">
+            <span class="membership-status">@Model.Status</span>
+
+            <h2>@Model.MembershipType</h2>
+
+            <p><strong>Start date:</strong> @Model.StartDate.ToShortDateString()</p>
+            <p><strong>End date:</strong> @Model.EndDate.ToShortDateString()</p>
+
+            <a asp-controller="WorkoutClasses" asp-action="Index" class="membership-link">
+                Book classes
+            </a>
+        </div>
+    }
 </section>

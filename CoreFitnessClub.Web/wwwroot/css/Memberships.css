@@ -149,3 +149,79 @@
     .offers-btn:hover {
         opacity: 0.85;
     }
+
+.contact-box {
+    position: relative;
+    background-color: var(--dark-bg);
+    display: flex;
+    flex-direction: column;
+    width: 377px;
+    height: 629px;
+    padding: 1.6rem;
+    border-radius: 1rem;
+    overflow:hidden;
+}
+
+.contact-hr {
+    border-top: 1px solid var(--grey-text2);
+    margin: 20px 0;
+}
+
+.contact-box-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+    .contact-box-title h4 {
+        font-family: Poppins, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--white-text-bg);
+        margin: 0;
+        padding-top: 1rem;
+    }
+
+    .contact-box-title p {
+        font-family: "DM Sans", sans-serif;
+        color: var(--white-text-bg);
+        margin: 0;
+        padding: 1rem;
+        text-align: center;
+    }
+
+.contact-number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Poppins, sans-serif;
+    color: var(--white-text-bg);
+}
+
+.contact-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.contact-img img {
+    width: 220px;
+    height: auto;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+    display: block;
+}
+
+.offers-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--hr);
+    margin: 20px 0;
+    display: block;
+}
