@@ -1,0 +1,60 @@
+﻿@model CoreFitnessClub.Domain.Entities.Membership?
+
+@{
+    ViewData["Title"] = "My Membership";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Memberships.css" />
+}
+
+<section class="membership-page">
+    <div class="membership-header">
+        <h1>My Membership</h1>
+        <p>Here you can see your current membership status.</p>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-error">@TempData["ErrorMessage"]</div>
+    }
+
+    @if (Model == null)
+    {
+        <div class="membership-card">
+            <h2>You do not have an active membership</h2>
+            <p>Choose a membership plan to get access to CoreFitness.</p>
+
+            <a asp-controller="Memberships" asp-action="Create" class="membership-link">
+                View memberships
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="membership-card">
+            <span class="membership-status">@Model.Status</span>
+
+            <h2>@Model.MembershipType</h2>
+
+            <p><strong>Start date:</strong> @Model.StartDate.ToShortDateString()</p>
+            <p><strong>End date:</strong> @Model.EndDate.ToShortDateString()</p>
+
+            <a asp-controller="WorkoutClasses" asp-action="Index" class="membership-link">
+                Book classes
+            </a>
+
+            <form asp-controller="Memberships" asp-action="CancelMembership" method="post" class="membership-delete-form">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="membership-delete-button">
+                    Cancel membership
+                </button>
+            </form>
+        </div>
+    }
+</section>

@@ -25,4 +25,10 @@ public class MembershipRepo : IMembershipRepo
         _context.Membership.Add(membership);
         await _context.SaveChangesAsync();
     }
+
+    public async Task DeleteAsync(Membership membership)
+    {
+        _context.Membership.Remove(membership);
+        await _context.SaveChangesAsync();
+    }
 }

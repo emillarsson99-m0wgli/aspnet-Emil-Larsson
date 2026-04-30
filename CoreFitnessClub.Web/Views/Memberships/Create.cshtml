@@ -1,0 +1,64 @@
+﻿@model CoreFitnessClub.Web.ViewModels.Memberships.CreateMembershipViewModel
+@{
+    ViewData["Title"] = "Memberships";
+}
+@section Scripts {
+    <script src="~/js/Accordion.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Memberships.css" />
+    <link rel="stylesheet" href="~/css/Accordion.css" />
+}
+
+<section class="membership-offers-section">
+    <div class="membership-offers-header">
+        <h1>Our Membership Offers</h1>
+    </div>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-error">@TempData["ErrorMessage"]</div>
+    }
+
+    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+    @if (Model.Membership != null)
+    {
+        <div class="current-membership">
+            <h2>Your current membership</h2>
+            <p>Type: @Model.Membership.MembershipType</p>
+            <p>Status: @Model.Membership.Status</p>
+            <p>Start date: @Model.Membership.StartDate.ToShortDateString()</p>
+            <p>End date: @Model.Membership.EndDate.ToShortDateString()</p>
+        </div>
+    }
+    else
+    {
+        <div class="membership-offers-grid">
+            @foreach (var offer in Model.MembershipsOffers)
+            {
+                <partial name="_MembershipOfferCard" model="offer" />
+            }
+            <div class="contact-box">
+                <div class="contact-box-title">
+                    <h4>Get Your Membership</h4>
+                    <p>Our memberships give you access to all equipment, personalized training.</p>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="contact-number">
+                    <p>Call Us At: +(46) 8 410 521 00</p>
+                    <button type="button" class="offers-btn">Call Us Today! ></button>
+                </div>
+
+                <div class="contact-img">
+                    <img src="~/images/Contact-img.svg" alt="">
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+@await Html.PartialAsync("_Accordion", Model.AccordionItems)

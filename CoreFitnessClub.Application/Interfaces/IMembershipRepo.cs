@@ -6,4 +6,5 @@ public interface IMembershipRepo
 {
     Task<Membership?> GetByUserIdAsync(string userId);
     Task AddAsync(Membership membership);
+    Task DeleteAsync (Membership membership);
 }

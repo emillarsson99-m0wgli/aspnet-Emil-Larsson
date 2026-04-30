@@ -1,0 +1,333 @@
+﻿.membership-offers-section {
+    padding: 4rem 0;
+}
+
+.membership-offers-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+    .membership-offers-header h1 {
+        font-family: Poppins, sans-serif;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: var(--dark-bg);
+    }
+
+.membership-offers-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.offers-box {
+    background-color: var(--white-text-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 377px;
+    min-height: 610px;
+    padding: 1.6rem;
+    border-radius: 1rem;
+}
+
+.offers-top img {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 1.5rem;
+}
+
+.offers-box h4 {
+    font-family: Poppins, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark-bg);
+    margin-bottom: 20px;
+}
+
+.offers-hr {
+    border: none;
+    border-top: 1px solid var(--grey-text2);
+    margin: 20px 0;
+}
+
+.offers-middle {
+    font-family: "DM Sans", sans-serif;
+    color: var(--grey-text2);
+}
+
+.offers-middle-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-top: 1.5rem;
+}
+
+    .offers-middle-list img {
+        width: 20px;
+        height: 20px;
+    }
+
+.offers-middle-list-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.offers-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--dark-bg);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.offers-bottom-pricing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    color: var(--white-text-bg);
+    font-family: Poppins, sans-serif;
+}
+
+.membership-pricing {
+    display: flex;
+    align-items: baseline;
+    height: 55px;
+    margin: 0;
+    gap: 0.3rem;
+}
+
+.membership-price {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.membership-monthly {
+    font-size: 14px;
+}
+
+.offers-bottom-left {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.monthly-classes {
+    display: flex;
+    height: 40px;
+    margin: 0;
+}
+
+.offers-bottom-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.offers-bottom-description {
+    display: flex;
+    font-family: "DM Sans", sans-serif;
+    color: var(--white-text-bg);
+    font-size: 16px;
+}
+
+.offers-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.2rem;
+    background-color: var(--lime, #dfff3f);
+    color: var(--dark-bg, #070312);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .offers-btn:hover {
+        opacity: 0.85;
+    }
+
+.contact-box {
+    position: relative;
+    background-color: var(--dark-bg);
+    display: flex;
+    flex-direction: column;
+    width: 377px;
+    height: 629px;
+    padding: 1.6rem;
+    border-radius: 1rem;
+    overflow:hidden;
+}
+
+.contact-hr {
+    border-top: 1px solid var(--grey-text2);
+    margin: 20px 0;
+}
+
+.contact-box-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+    .contact-box-title h4 {
+        font-family: Poppins, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--white-text-bg);
+        margin: 0;
+        padding-top: 1rem;
+    }
+
+    .contact-box-title p {
+        font-family: "DM Sans", sans-serif;
+        color: var(--white-text-bg);
+        margin: 0;
+        padding: 1rem;
+        text-align: center;
+    }
+
+.contact-number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Poppins, sans-serif;
+    color: var(--white-text-bg);
+}
+
+.contact-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.contact-img img {
+    width: 220px;
+    height: auto;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+    display: block;
+}
+
+.offers-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--hr);
+    margin: 20px 0;
+    display: block;
+}
+
+.membership-page {
+    padding: 4rem 1rem;
+}
+
+.membership-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+    .membership-header h1 {
+        font-family: Poppins, sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--dark-bg);
+    }
+
+    .membership-header p {
+        font-family: "DM Sans", sans-serif;
+        color: var(--grey-text2);
+    }
+
+.membership-card {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background-color: var(--white-text-bg);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+    .membership-card h2 {
+        font-family: Poppins, sans-serif;
+        font-size: 2rem;
+        margin: 1rem 0 1.5rem;
+        color: var(--dark-bg);
+    }
+
+    .membership-card p {
+        font-family: "DM Sans", sans-serif;
+        margin: 0.75rem 0;
+        color: var(--dark-bg);
+    }
+
+.membership-status {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    background-color: var(--lime, #dfff3f);
+    color: var(--dark-bg);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.membership-link,
+.membership-delete-button {
+    display: inline-block;
+    min-width: 170px;
+    border: none;
+    border-radius: 999px;
+    padding: 0.9rem 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 1.5rem;
+}
+
+.membership-link {
+    background-color: var(--dark-bg);
+    color: var(--white-text-bg);
+}
+
+.membership-delete-form {
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.membership-delete-button {
+    background-color: #a61b1b;
+    color: #fff;
+}
+
+    .membership-link:hover,
+    .membership-delete-button:hover {
+        opacity: 0.85;
+    }
+
+.alert {
+    max-width: 540px;
+    margin: 0 auto 1.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.alert-success {
+    background: #e7f7ec;
+    color: #176b35;
+}
+
+.alert-error {
+    background: #fde8e8;
+    color: #9b1c1c;
+}
