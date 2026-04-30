@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CoreFitnessClub.Web.ViewModels.MyPageViewModel
+@{
     ViewData["Title"] = "My Account";
 }
 
@@ -61,23 +62,27 @@
                     @Html.AntiForgeryToken()
 
                     <div class="form-group" id="form-group-top">
-                        <label for="FirstName">First Name</label>
-                        <input type="text" id="FirstName" name="FirstName" placeholder="Enter First Name" />
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" placeholder="Enter First Name" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="LastName">Last Name</label>
-                        <input type="text" id="LastName" name="LastName" placeholder="Enter Last Name" />
+                        <label asp-for="LastName"></label>
+                        <input asp-for="LastName" placeholder="Enter Last Name" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="Email">Email Address *</label>
-                        <input type="email" id="Email" name="Email" placeholder="username@domain.com" />
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" placeholder="username@domain.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
                     <div class="form-group" id="form-group-bottom">
-                        <label for="PhoneNumber">Phone Number</label>
-                        <input type="text" id="PhoneNumber" name="PhoneNumber" placeholder="Enter Phone Number" />
+                        <label asp-for="PhoneNumber"></label>
+                        <input asp-for="PhoneNumber" placeholder="Enter Phone Number" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
 
                     <hr class="account-hr" />

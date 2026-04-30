@@ -1,5 +1,6 @@
 ﻿using CoreFitnessClub.Application.Interfaces;
 using CoreFitnessClub.Infrastructure.Identity;
+using CoreFitnessClub.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
