@@ -6,6 +6,11 @@
 <main>
     <h1 class="site-h1">My Account</h1>
 
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
     <div class="account-container">
 
         <div class="account-sidebar">
@@ -14,7 +19,7 @@
             <div class="account-menu-options">
                 <p>Menu Options</p>
 
-                <a class="menu-option" asp-controller="Account" asp-action="MyPage">
+                <a class="menu-option" asp-controller="MyPage" asp-action="Index">
                     About me <span>></span>
                 </a>
 
@@ -58,7 +63,7 @@
 
                 <hr class="account-hr" />
 
-                <form asp-controller="Account" asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
+                <form asp-controller="MyPage" asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
                     @Html.AntiForgeryToken()
 
                     <div class="form-group" id="form-group-top">
@@ -128,3 +133,7 @@
 
     </div>
 </main>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
