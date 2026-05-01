@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreFitnessClub.Web.Controllers
 {
-    [Authorize]
+    
     public class MembershipsController : Controller
     {
         private readonly IMembershipService _membershipService;
@@ -22,6 +22,7 @@ namespace CoreFitnessClub.Web.Controllers
             _membershipService = membershipService;
             _userManager = userManager;
         }
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> MyMembership()
         {
@@ -38,29 +39,29 @@ namespace CoreFitnessClub.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var userId = _userManager.GetUserId(User);
-
-            if (userId == null)
-                return Challenge();
-
-            var membership = await _membershipService.GetByUserIdAsync(userId);
-
             var model = BuildCreateMembershipViewModel();
 
-            if (membership != null)
-            {
-                model.Membership = new MembershipDetailsViewModel
-                {
-                    MembershipType = membership.MembershipType,
-                    Status = membership.Status,
-                    StartDate = membership.StartDate,
-                    EndDate = membership.EndDate
-                };
-            }
+            var userId = _userManager.GetUserId(User);
 
+            if (userId != null)
+            {
+                var membership = await _membershipService.GetByUserIdAsync(userId);
+
+                if (membership != null)
+                {
+                    model.Membership = new MembershipDetailsViewModel
+                    {
+                        MembershipType = membership.MembershipType,
+                        Status = membership.Status,
+                        StartDate = membership.StartDate,
+                        EndDate = membership.EndDate
+                    };
+                }
+            }
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateMembershipViewModel model)
@@ -90,7 +91,7 @@ namespace CoreFitnessClub.Web.Controllers
             TempData["SuccessMessage"] = "Membership created successfully!";
             return RedirectToAction(nameof(MyMembership));
         }
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CancelMembership()
@@ -203,10 +204,11 @@ namespace CoreFitnessClub.Web.Controllers
                 }
             };
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var model = BuildCreateMembershipViewModel();
+            return View("Create", model);
         }
     }
 }
