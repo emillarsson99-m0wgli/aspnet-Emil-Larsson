@@ -136,20 +136,6 @@
     font-size: 16px;
 }
 
-.offers-btn {
-    border: none;
-    border-radius: 999px;
-    padding: 0.8rem 1.2rem;
-    background-color: var(--lime, #dfff3f);
-    color: var(--dark-bg, #070312);
-    font-weight: 600;
-    cursor: pointer;
-}
-
-    .offers-btn:hover {
-        opacity: 0.85;
-    }
-
 .contact-box {
     position: relative;
     background-color: var(--dark-bg);
@@ -331,3 +317,6 @@
     background: #fde8e8;
     color: #9b1c1c;
 }
+
+
+    

@@ -1,0 +1,155 @@
+﻿.customer-service-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem 1rem;
+}
+
+    .customer-service-container h1 {
+        font-family: poppins;
+        color: var(--dark-text);
+    }
+
+.customer-service-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 1.5rem;
+    width: 1310px;
+    height: 787px;
+    gap: 1rem;
+    background-color: var(--white-text-bg);
+}
+
+.customer-service-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.customer-service-form-img-bullet-containers {
+    display: flex;
+    position: relative;
+    bottom: 160px;
+    left: 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 530px;
+    height: 120px;
+    border-radius: 8px;
+    background-color: #26242487;
+    backdrop-filter: blur(10px);
+}
+
+.customer-service-form-img-bullet-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 1rem;
+    color: var(--white-text-bg);
+    font-family: poppins;
+}
+
+    .customer-service-form-img-bullet-container h3 {
+        margin: 0;
+        font-size: 1.2rem
+    }
+
+    .customer-service-form-img-bullet-container p {
+        margin: 3px 0;
+    }
+
+    .customer-service-form-img-bullet-container .phone-icon,
+    .customer-service-form-img-bullet-container .mail-icon {
+        background-color: var(--accent-color);
+        border-radius: 50px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+.customer-service-form-title {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+}
+
+    .customer-service-form-title h2 {
+        font-family: poppins;
+        color: var(--dark-text);
+    }
+
+    .customer-service-form-title p {
+        font-family: dm sans;
+        color: var(--grey-text);
+    }
+
+.customer-service-contact-info {
+    display: flex;
+    gap: 2rem;
+}
+
+.customer-service-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.customer-service-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 2.2rem;
+    margin: 0;
+    width: 100%;
+    font-family: poppins;
+    color: var(--dark-text);
+}
+
+.customer-service-submit-btn {
+    background-color: var(--accent-color);
+    color: var(--dark-text);
+    border: none;
+    margin-top: 2rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 16px;
+    width: 200px;
+    cursor: pointer;
+    font-family: poppins;
+    font-weight: 500;
+}
+
+    .customer-service-submit-btn:hover {
+        background-color: var(--dark-bg);
+        color: var(--white-text-bg);
+    }
+
+input {
+    background-color: var(--bg);
+    padding: 1rem;
+    width: 256px;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+}
+
+textarea {
+    background-color: var(--bg);
+    padding: 1rem;
+    width: 580px;
+    height: 150px;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    resize: none;
+}
+
+label {
+    font-weight: 700;
+}
