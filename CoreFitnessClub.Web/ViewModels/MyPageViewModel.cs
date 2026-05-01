@@ -18,7 +18,7 @@ public class MyPageViewModel
     [Display(Name = "Phone Number")]
     public string? PhoneNumber { get; set; }
     public IFormFile? ProfileImage { get; set; }
-    public string? ExisitingProfileImagePath { get; set; }
+    public string? ExistingProfileImagePath { get; set; }
     public Membership? Membership { get; set; }
     public List<Booking> Bookings { get; set; } = new();
 

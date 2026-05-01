@@ -2,6 +2,9 @@
 @{
     ViewData["Title"] = "My Account";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/MyPage.css" />
+}
 
 <main>
     <h1 class="site-h1">My Account</h1>
@@ -14,7 +17,21 @@
     <div class="account-container">
 
         <div class="account-sidebar">
-            <img src="~/images/AccountImg.svg" alt="Account Image" />
+
+            @if (!string.IsNullOrWhiteSpace(Model.ExistingProfileImagePath))
+            {
+                <div class="profile-image-container">
+                    <img class="profile-image"
+                         src="@Model.ExistingProfileImagePath"
+                         alt="Profile Image" />
+                </div>
+            }
+            else
+            {
+                <div class="profile-image-container placeholder">
+                    <span>No image</span>
+                </div>
+            }
 
             <div class="account-menu-options">
                 <p>Menu Options</p>
@@ -92,10 +109,13 @@
 
                     <hr class="account-hr" />
 
-                    <div class="form-group" id="file-input">
-                        <label for="ProfileImage">Profile Image</label>
+                    
 
-                        <input type="file" id="ProfileImage" name="ProfileImage" accept="image/*" />
+                    <div class="form-group" id="file-input">
+                        <label asp-for="ProfileImage">Profile Image</label>
+
+                        <input type="file" asp-for="ProfileImage" accept="image/*" />
+                        <span asp-validation-for="ProfileImage" class="text-danger"></span>
 
                         <label for="ProfileImage" class="upload-box">
                             <span>Upload Profile Image</span>
@@ -108,6 +128,7 @@
                             Save <span>›</span>
                         </button>
                     </div>
+
                 </form>
             </div>
 

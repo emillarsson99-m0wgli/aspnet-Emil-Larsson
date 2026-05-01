@@ -5,6 +5,7 @@
     color: var(--dark-text);
     text-align: center;
     padding-top: 2rem;
+    padding-bottom: 1rem;
     margin: 0;
 }
 
@@ -272,3 +273,27 @@ input[type="file"] {
         margin: 0;
     }
 
+.profile-image-container {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 16px;
+    margin-top: .5rem;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.profile-image-container.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    color: #666;
+    font-weight: 600;
+}

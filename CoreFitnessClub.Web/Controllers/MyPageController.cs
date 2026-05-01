@@ -4,6 +4,7 @@ using CoreFitnessClub.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace CoreFitnessClub.Web.Controllers;
 
 public class MyPageController : Controller
@@ -35,7 +36,7 @@ public class MyPageController : Controller
             LastName = user.LastName,
             Email = user.Email ?? string.Empty,
             PhoneNumber = user.PhoneNumber ?? string.Empty,
-            ExisitingProfileImagePath = user.ProfileImagePath,
+            ExistingProfileImagePath = user.ProfileImagePath,
             Bookings = bookings,
             Membership = membership
         };
@@ -65,6 +66,30 @@ public class MyPageController : Controller
             user.NormalizedEmail = model.Email.ToUpper();
             user.NormalizedUserName = model.Email.ToUpper();
             user.EmailConfirmed = false;
+        }
+
+        if(model.ProfileImage != null && model.ProfileImage.Length > 0)
+        {
+            var uploadsFolder = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "images",
+                "profiles"
+            );
+
+            if (!Directory.Exists(uploadsFolder))
+                Directory.CreateDirectory(uploadsFolder);
+
+            var fileExtenstion = Path.GetExtension(model.ProfileImage.FileName);
+            var fileName = $"{Guid.NewGuid()}{fileExtenstion}";
+            var filePath = Path.Combine(uploadsFolder, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await model.ProfileImage.CopyToAsync(stream);
+            }
+
+            user.ProfileImagePath = $"/images/profiles/{fileName}";
         }
 
         var result = await _userManager.UpdateAsync(user);
