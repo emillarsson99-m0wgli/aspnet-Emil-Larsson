@@ -18,7 +18,7 @@
 
     @RenderSection("Styles", required: false)
 </head>
-<body>
+<body class="@(Context.Request.Path.Value == "/" ? "home-page" : "")">
     <partial name="_Header" />
 
     <main>
