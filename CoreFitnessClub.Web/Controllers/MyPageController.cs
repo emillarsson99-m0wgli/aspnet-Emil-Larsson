@@ -1,6 +1,7 @@
 ﻿using CoreFitnessClub.Application.Interfaces;
 using CoreFitnessClub.Infrastructure.Identity;
 using CoreFitnessClub.Web.ViewModels;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,12 +13,14 @@ public class MyPageController : Controller
     private readonly IBookingService _bookingService;
     private readonly IMembershipService _membershipService;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public MyPageController(IBookingService bookingService, IMembershipService membershipService, UserManager<ApplicationUser> userManager)
+    public MyPageController(IBookingService bookingService, IMembershipService membershipService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
     {
         _bookingService = bookingService;
         _membershipService = membershipService;
         _userManager = userManager;
+        _signInManager = signInManager;
     }
 
     public async Task<IActionResult> Index()
@@ -106,5 +109,31 @@ public class MyPageController : Controller
 
         TempData["SuccessMessage"] = "Your profile has been updated";
         return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteAccount()
+    {
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user == null)
+            return Challenge();
+
+        await _bookingService.DeleteBookingByUserIdAsync(user.Id);
+        await _membershipService.DeleteAsync(user.Id);
+
+        var result = await _userManager.DeleteAsync(user);
+
+        if (!result.Succeeded)
+        {
+            TempData["ErrorMessage"] = "Account could not be removed.";
+            return RedirectToAction(nameof(Index));
+        }
+
+        await _signInManager.SignOutAsync();
+
+        return RedirectToAction("Index", "Home");
+
     }
 }

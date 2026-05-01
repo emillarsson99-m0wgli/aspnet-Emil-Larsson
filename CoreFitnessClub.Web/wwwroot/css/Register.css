@@ -1,0 +1,159 @@
+﻿.signUp-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem;
+}
+
+.signUp-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white-text-bg);
+    border-radius: 20px;
+    padding: 40px 48px;
+    width: 860px;
+}
+
+.signUp-message {
+    font-family: "Poppins", sans-serif;
+    padding: 3rem;
+}
+
+    .signUp-message h1 {
+        font-weight: 500;
+        font-size: 32px;
+        color: var(--dark-text);
+        margin: 0 0 24px 0;
+    }
+
+    .signUp-message p {
+        font-size: 1rem;
+        color: var(--grey-text);
+        margin: 0;
+    }
+
+.signUp-hr {
+    border: none;
+    height: 1px;
+    background: var(--hr);
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.external-signUp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 2rem;
+    gap: 2rem;
+    width: 100%;
+}
+
+    .external-signUp form {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        width: 100%;
+    }
+
+.signUp-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+    .signUp-divider hr {
+        border: none;
+        height: 1px;
+        background: var(--hr);
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .signUp-divider span {
+        font-size: 1rem;
+        color: #888;
+        white-space: nowrap;
+    }
+
+.user-signUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+    width: 100%;
+}
+
+.signUp-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1rem;
+    margin-bottom: 18px;
+    width: 100%;
+    max-width: 800px;
+}
+
+    .signUp-group label {
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        color: var(--dark-text);
+    }
+
+    .signUp-group input[type="email"] {
+        width: 100%;
+        height: 48px;
+        padding: 1.5rem;
+        border: none;
+        border-radius: 12px;
+        background: var(--bg);
+        box-sizing: border-box;
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        color: var(--dark-text);
+    }
+
+.signUp-button-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 1.5rem 0;
+}
+
+.signUp-button {
+    border: none;
+    background: var(--accent-color);
+    color: var(--black-text);
+    border-radius: 999px;
+    padding: 0.75rem 1.5rem;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .signUp-button:hover {
+        background-color: var(--dark-bg);
+        color: var(--white-text-bg);
+    }
+
+.signUp-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+    .signUp-info p {
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        color: var(--grey-text);
+        margin: 0;
+    }

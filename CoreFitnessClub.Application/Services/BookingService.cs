@@ -57,4 +57,9 @@ public class BookingService : IBookingService
 
         return true;
     }
+
+    public async Task DeleteBookingByUserIdAsync(string userId)
+    {
+        await _bookingRepo.DeleteByUserIdAsync(userId);
+    }
 }

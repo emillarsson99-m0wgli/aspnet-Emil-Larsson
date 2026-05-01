@@ -9,5 +9,6 @@ public interface IBookingRepo
     Task<bool> ExistsAsync(string userId, int workoutClassId);
     Task AddAsync(Booking booking);
     Task DeleteAsync(Booking booking);
+    Task DeleteByUserIdAsync(string userId);
 }
 
