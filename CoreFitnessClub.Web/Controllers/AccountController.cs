@@ -1,5 +1,6 @@
 ﻿using CoreFitnessClub.Infrastructure.Identity;
 using CoreFitnessClub.Web.ViewModels;
+using CoreFitnessClub.Web.ViewModels.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -27,32 +28,68 @@ public class AccountController(UserManager<ApplicationUser> userManager, SignInM
     }
 
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> Register(RegisterViewModel model)
+    public IActionResult Register(RegisterViewModel model)
     {
         if (!ModelState.IsValid)
             return View(model);
 
+        TempData["Email"] = model.Email;
+        TempData["ReturnUrl"] = model.ReturnUrl;
+
+        return RedirectToAction("SetPassword");
+    }
+
+    [HttpGet]
+    public IActionResult SetPassword()
+    {
+        var email = TempData["Email"]?.ToString();
+
+        if (string.IsNullOrWhiteSpace(email))
+            return RedirectToAction("Register");
+
+        TempData.Keep("Email");
+        ViewBag.Email = email;
+
+        return View(new SetPasswordViewModel());
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SetPassword(SetPasswordViewModel model)
+    {
+        var email = TempData["Email"]?.ToString();
+
+        if (string.IsNullOrEmpty(email))
+            return RedirectToAction("Register");
+
+        if (!ModelState.IsValid)
+        {
+            TempData.Keep("Email");
+            ViewBag.Email = email;
+            return View(model);
+        }
+
         var user = new ApplicationUser
         {
-            UserName = model.Email,
-            Email = model.Email
+            UserName = email,
+            Email = email,
+            EmailConfirmed = true
         };
 
         var result = await _userManager.CreateAsync(user, model.Password);
 
-        if (result.Succeeded)
+        if (!result.Succeeded)
         {
-            await _signInManager.SignInAsync(user, isPersistent: false);
-            return RedirectToAction("index", "Home");
+            foreach (var error in result.Errors)
+                ModelState.AddModelError("", error.Description);
+
+            TempData.Keep("Email");
+            ViewBag.Email = email;
+            return View(model);
         }
+        await _signInManager.SignInAsync(user, isPersistent: false);
 
-        foreach (var error in result.Errors)
-        {
-            ModelState.AddModelError(string.Empty, error.Description);
-        }
-
-        return View(model);
-
+        return RedirectToAction("index", "Home");
     }
 
     [HttpGet]
