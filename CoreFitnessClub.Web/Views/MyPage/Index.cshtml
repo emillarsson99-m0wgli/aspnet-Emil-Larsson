@@ -66,9 +66,11 @@
             <div class="account-delete">
                 <p>If you like to cancel your account click below</p>
 
-                <form asp-controller="Account" asp-action="DeleteAccount" method="post">
+                <form asp-controller="MyPage" asp-action="DeleteAccount" method="post">
                     @Html.AntiForgeryToken()
-                    <button type="submit" class="delete-button">Remove Account</button>
+                    <button type="submit" class="delete-button">
+                        Remove Account
+                    </button>
                 </form>
             </div>
         </div>
