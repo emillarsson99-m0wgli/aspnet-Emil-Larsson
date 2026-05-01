@@ -58,9 +58,5 @@ public class BookingRepo : IBookingRepo
 
         _context.Bookings.RemoveRange(bookings);
         await _context.SaveChangesAsync();
-    }
-
-    
-
-    
+    }    
 }

@@ -13,12 +13,14 @@ public class MyPageController : Controller
     private readonly IBookingService _bookingService;
     private readonly IMembershipService _membershipService;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public MyPageController(IBookingService bookingService, IMembershipService membershipService, UserManager<ApplicationUser> userManager)
+    public MyPageController(IBookingService bookingService, IMembershipService membershipService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
     {
         _bookingService = bookingService;
         _membershipService = membershipService;
         _userManager = userManager;
+        _signInManager = signInManager;
     }
 
     public async Task<IActionResult> Index()
@@ -129,7 +131,7 @@ public class MyPageController : Controller
             return RedirectToAction(nameof(Index));
         }
 
-        await HttpContext.SignOutAsync();
+        await _signInManager.SignOutAsync();
 
         return RedirectToAction("Index", "Home");
 
