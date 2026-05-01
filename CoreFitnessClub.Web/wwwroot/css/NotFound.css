@@ -1,0 +1,27 @@
+﻿.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+}
+    .error-container h1 {
+        font-family: poppins;
+        font-weight: 700;
+        font-size: 56px;
+        color: var(--dark-text);
+        margin: 0;
+        padding: 1rem;
+    }
+    .error-container p {
+        font-family: poppins;
+        font-size: 1rem;
+        color: var(--grey-text);
+        margin: 0;
+    }
+
+.error-button-row {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}

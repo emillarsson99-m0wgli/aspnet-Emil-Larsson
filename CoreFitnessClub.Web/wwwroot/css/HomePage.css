@@ -241,13 +241,6 @@
     font-weight: 600;
 }
 
-.program-description .free-quote {
-    text-decoration: underline;
-    cursor: pointer;
-    margin-top: 1rem;
-    font-size: 14px;
-}
-
 .store-bg {
     margin-top: 1rem;
     border-radius: 1rem 1rem;
@@ -306,7 +299,8 @@
     font-weight: 600;
 }
 
-.store-description .free-quote {
+.free-quote {
+    color: var(--dark-text);
     text-decoration: underline;
     cursor: pointer;
     margin-top: 1rem;
