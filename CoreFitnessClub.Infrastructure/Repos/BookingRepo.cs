@@ -50,7 +50,15 @@ public class BookingRepo : IBookingRepo
         await _context.SaveChangesAsync();
     }
 
-    
+    public async Task DeleteByUserIdAsync(string userId)
+    {
+        var bookings = await _context.Bookings
+            .Where(x => x.UserId == userId)
+            .ToListAsync();
+
+        _context.Bookings.RemoveRange(bookings);
+        await _context.SaveChangesAsync();
+    }
 
     
 
