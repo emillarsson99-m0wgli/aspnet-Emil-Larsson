@@ -32,27 +32,55 @@ public class AccountController(UserManager<ApplicationUser> userManager, SignInM
         if (!ModelState.IsValid)
             return View(model);
 
+        TempData["Email"] = model.Email;
+        TempData["ReturnUrl"] = model.ReturnUrl;
+
+        return RedirectToAction("SetPassword");
+    }
+
+    [HttpGet]
+    public IActionResult SetPassword()
+    {
+        if (TempData["Email"] == null)
+            return RedirectToAction("Register");
+
+        TempData.Keep("Email");
+
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SetPassword(SetPasswordViewModel model)
+    {
+        if (!ModelState.IsValid)
+            return View(model);
+
+        var email = TempData["Email"]?.ToString();
+
+        if (string.IsNullOrEmpty(email))
+            return RedirectToAction("Register");
+
         var user = new ApplicationUser
         {
-            UserName = model.Email,
-            Email = model.Email
+            UserName = email,
+            Email = email,
+            EmailConfirmed = true
         };
 
         var result = await _userManager.CreateAsync(user, model.Password);
 
-        if (result.Succeeded)
+        if (!result.Succeeded)
         {
-            await _signInManager.SignInAsync(user, isPersistent: false);
-            return RedirectToAction("index", "Home");
+            foreach (var error in result.Errors)
+                ModelState.AddModelError("", error.Description);
+
+            TempData.Keep("Email");
+            return View(model);
         }
+        await _signInManager.SignInAsync(user, isPersistent: false);
 
-        foreach (var error in result.Errors)
-        {
-            ModelState.AddModelError(string.Empty, error.Description);
-        }
-
-        return View(model);
-
+        return RedirectToAction("index", "Home");
     }
 
     [HttpGet]
