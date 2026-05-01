@@ -133,3 +133,19 @@
         color: var(--dark-bg);
         transition: background-color 0.3s ease;
     }
+
+.contact-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.2rem;
+    background-color: var(--lime, #dfff3f);
+    color: var(--dark-bg, #070312);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+    .contact-btn:hover {
+        background-color: var(--white-text-bg);
+        color: var(--dark-bg);
+        transition: background-color 0.3s ease;
+    }

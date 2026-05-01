@@ -4,5 +4,5 @@ namespace CoreFitnessClub.Web.ViewModels;
 
 public class CustomerServiceViewModel
 {
-    public List<AccordionViewmodel> AccordionViews { get; set; } = new();
+    public List<AccordionViewmodel> AccordionItems { get; set; } = new();
 }

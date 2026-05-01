@@ -57,6 +57,7 @@
 
     .customer-service-form-img-bullet-container h3 {
         margin: 0;
+        font-size: 1.2rem
     }
 
     .customer-service-form-img-bullet-container p {
@@ -114,7 +115,7 @@
 
 .customer-service-submit-btn {
     background-color: var(--accent-color);
-    color: var(--black-text);
+    color: var(--dark-text);
     border: none;
     margin-top: 2rem;
     padding: 0.5rem 1.5rem;
@@ -127,8 +128,8 @@
 }
 
     .customer-service-submit-btn:hover {
-        background-color: var(--white-text-bg);
-        color: var(--dark-bg);
+        background-color: var(--dark-bg);
+        color: var(--white-text-bg);
     }
 
 input {
