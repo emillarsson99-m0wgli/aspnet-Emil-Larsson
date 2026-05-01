@@ -1,4 +1,4 @@
-﻿@model CoreFitnessClub.Web.ViewModels.RegisterViewModel
+﻿@model CoreFitnessClub.Web.ViewModels.Account.RegisterViewModel
 
 @{
     ViewData["Title"] = "Register";
@@ -44,20 +44,25 @@
             <hr />
         </div>
 
-        <div class="user-signUp">
+        <form asp-controller="Account" asp-action="Register" method="post" class="user-signUp">
+            @Html.AntiForgeryToken()
+
             <div class="signUp-group">
-                <label for="email">Email Address *</label>
-                <input type="email" id="email" placeholder="username@domain.com" />
+                <label asp-for="Email">Email Address *</label>
+                <input asp-for="Email" type="email" placeholder="username@domain.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="signUp-button-row">
-                <button class="signUp-button">Continue <span>&gt;</span></button>
+                <button type="submit" class="signUp-button">
+                    Continue <span>&gt;</span>
+                </button>
             </div>
 
             <div class="signUp-info">
                 <p>We will send a verification code to your email.</p>
             </div>
-        </div>
+        </form>
 
     </div>
 </div>
