@@ -1,7 +1,9 @@
 ﻿using CoreFitnessClub.Application.Interfaces;
 using CoreFitnessClub.Infrastructure.Identity;
+using CoreFitnessClub.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace CoreFitnessClub.Web.Controllers;
 
@@ -20,17 +22,89 @@ public class MyPageController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var userId = _userManager.GetUserId(User);
+        var user = await _userManager.GetUserAsync(User);
 
-        if (userId == null)
+        if (user == null)
             return Challenge();
 
-        var bookings = await _bookingService.GetBookingsByUserIdAsync(userId);
-        var membership = await _membershipService.GetByUserIdAsync(userId);
+        var bookings = await _bookingService.GetBookingsByUserIdAsync(user.Id);
+        var membership = await _membershipService.GetByUserIdAsync(user.Id);
 
-        ViewBag.Membership = membership;
-
-        return View(bookings);
+        var model = new MyPageViewModel
+        {
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email ?? string.Empty,
+            PhoneNumber = user.PhoneNumber ?? string.Empty,
+            ExistingProfileImagePath = user.ProfileImagePath,
+            Bookings = bookings,
+            Membership = membership
+        };
+        return View(model);
     }
-    
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> UpdateProfile(MyPageViewModel model)
+    {
+        if (!ModelState.IsValid)
+            return View("Index", model);
+
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user == null)
+            return Challenge();
+
+        user.FirstName = model.FirstName;
+        user.LastName = model.LastName;
+        user.PhoneNumber = model.PhoneNumber;
+
+        if (user.Email != model.Email)
+        {
+            user.Email = model.Email;
+            user.UserName = model.Email;
+            user.NormalizedEmail = model.Email.ToUpper();
+            user.NormalizedUserName = model.Email.ToUpper();
+            user.EmailConfirmed = false;
+        }
+
+        if(model.ProfileImage != null && model.ProfileImage.Length > 0)
+        {
+            var uploadsFolder = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "images",
+                "profiles"
+            );
+
+            if (!Directory.Exists(uploadsFolder))
+                Directory.CreateDirectory(uploadsFolder);
+
+            var fileExtenstion = Path.GetExtension(model.ProfileImage.FileName);
+            var fileName = $"{Guid.NewGuid()}{fileExtenstion}";
+            var filePath = Path.Combine(uploadsFolder, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await model.ProfileImage.CopyToAsync(stream);
+            }
+
+            user.ProfileImagePath = $"/images/profiles/{fileName}";
+        }
+
+        var result = await _userManager.UpdateAsync(user);
+
+        if (!result.Succeeded)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View("Index", model);
+        }
+
+        TempData["SuccessMessage"] = "Your profile has been updated";
+        return RedirectToAction(nameof(Index));
+    }
 }

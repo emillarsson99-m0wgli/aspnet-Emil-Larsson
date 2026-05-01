@@ -29,4 +29,8 @@
     <ProjectReference Include="..\CoreFitnessClub.Infrastructure\CoreFitnessClub.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\profiles\" />
+  </ItemGroup>
+
 </Project>
