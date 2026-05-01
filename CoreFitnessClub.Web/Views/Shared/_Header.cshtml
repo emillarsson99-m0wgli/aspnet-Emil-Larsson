@@ -16,20 +16,15 @@
 
         <div class="header-account">
             @if (User.Identity?.IsAuthenticated == true)
-            {
-                <span>Hej @User.Identity.Name</span>
-
-                <a asp-controller="MyPage" asp-action="Index" class="button">Min sida</a>
-
-                <form asp-controller="Account" asp-action="Logout" method="post">
-                    @Html.AntiForgeryToken()
-                    <button class="button" type="submit">Logga ut</button>
-                </form>
+            {                         
+         
+                <a asp-controller="WorkoutClasses" asp-action="Index" class="navbar-button">Our Classes</a>
+                <a asp-controller="MyPage" asp-action="Index" class="button">My Account </a>
             }
             else
             {
-                <a asp-controller="Account" asp-action="Login" class="button">Logga in</a>
-                <a asp-controller="Account" asp-action="Register" class="button">Registrera</a>
+                <a asp-controller="Account" asp-action="Register" class="navbar-button">Become Member</a>
+                <a asp-controller="Account" asp-action="Login" class="button">Sign in</a>
             }
         </div>
     </div>
