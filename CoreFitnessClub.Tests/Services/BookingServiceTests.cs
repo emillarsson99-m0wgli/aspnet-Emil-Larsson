@@ -27,5 +27,23 @@ public class BookingServiceTests
         bookingRepo.Verify(x => x.AddAsync(It.IsAny<Booking>()), Times.Never);
     }
 
+    [Fact]
+    public async Task BookClassAsync_ReturnsFalse_WhenUserAlreadyBookedClass()
+    {
+        var bookingRepo = new Mock<IBookingRepo>();
+        var workoutClassRepo = new Mock<IWorkoutClassRepo>();
 
+        workoutClassRepo.Setup(x => x.GetByIdAsync(1))
+            .ReturnsAsync(new WorkoutClass { Id = 1, Name = "Yoga" });
+
+        bookingRepo.Setup(x => x.ExistsAsync("user1", 1))
+            .ReturnsAsync(true);
+
+        var service = new BookingService(bookingRepo.Object, workoutClassRepo.Object);
+
+        var result = await service.BookClassAsync("user1", 1);
+
+        Assert.False(result);
+        bookingRepo.Verify(x => x.AddAsync(It.IsAny<Booking>()), Times.Never);
+    }
 }
