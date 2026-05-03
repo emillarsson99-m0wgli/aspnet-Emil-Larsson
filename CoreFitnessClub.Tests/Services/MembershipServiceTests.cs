@@ -30,4 +30,20 @@ public class MembershipServiceTests
 
         membershipRepo.Verify(x => x.AddAsync(It.IsAny<Membership>()), Times.Never);
     }
+
+    [Fact]
+    public async Task DeleteAsync_ReturnsFalse_WhenUserHasNoMembership()
+    {
+        var membershipRepo = new Mock<IMembershipRepo>();
+
+        membershipRepo.Setup(x => x.GetByUserIdAsync("User1"))
+           .ReturnsAsync((Membership?)null);
+
+        var service = new MembershipService(membershipRepo.Object);
+
+        var result = await service.DeleteAsync("User1");
+
+        Assert.False(result);
+        membershipRepo.Verify(x => x.DeleteAsync(It.IsAny<Membership>()), Times.Never);
+    }
 }
