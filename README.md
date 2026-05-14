@@ -28,12 +28,14 @@ Detta är en webbapplikation byggd i ASP.NET Core MVC där användare kan skapa 
 ## Starta projektet
 
 1. Klona repot: https://github.com/emillarsson99-m0wgli/aspnet-Emil-Larsson
+
+2. Bygg projektet, kör i terminalen: dotnet build CoreFitnessClub.Web/CoreFitnessClub.Web.csproj 
  
-2. Uppdatera databasen, kör: dotnet ef database update --project CoreFitnessClub.Infrastructure --startup-project CoreFitnessClub.Web
+3. Uppdatera databasen, kör: dotnet ef database update --project CoreFitnessClub.Infrastructure --startup-project CoreFitnessClub.Web
 
-3. Starta appen, kör: dotnet run --project CoreFitnessClub.Web
+4. Starta appen, kör: dotnet run --project CoreFitnessClub.Web
 
-4. Kör tester i "Test explorer"
+5. Kör tester i "Test explorer"
 
 ## Övrigt
 
